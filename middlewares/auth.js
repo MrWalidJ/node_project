@@ -1,7 +1,7 @@
 // we put this file as a middleware before handling a get request to get the profile details
 // we put "auth" in side get request in profile.js
 
-const jwt = require("jsonwebtoken")  ;
+const jwt = require("jsonwebtoken")  ; // for token generation
 
 module.exports = (req ,res , next) => {
 // get the token from headers 
