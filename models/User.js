@@ -26,4 +26,4 @@ const userSchema = new mongoose.Schema({
 });
 
 const User = mongoose.model("users", userSchema); // if we put "user" it will add a collection with name "users"
-module.exports = { User };
+module.exports =  {User} ;

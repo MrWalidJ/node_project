@@ -1,9 +1,9 @@
 const express = require("express");
 const joi = require("joi") ;
-const jwt = require("jsonwebtoken") ;
 const bcrypt = require("bcrypt");
-const { User } = require("../models/User");
+const  User  = require("../models/User");
 const router = express.Router();
+const jwt = require("jsonwebtoken");
 
 const registerSchema = joi.object({
 name: joi.string().required().min(2) ,
@@ -35,14 +35,14 @@ user.password = await bcrypt.hash(user.password , salt) ; // encryption
 await user.save();
 
 let genToken = jwt.sign({
-    _id:user._id , biz:user.biz}, process.env.secretKey
+    _id:user._id , biz:user.biz}, process.env.jwtKey // secret key is in env file
 );
 res.status(201).send({token: genToken});   
     } catch(err){
         res.status(400).send("Error posting user");
     }
 
-})
+});
 
 
 module.exports = router ;

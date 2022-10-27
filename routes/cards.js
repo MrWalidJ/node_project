@@ -1,7 +1,8 @@
 const express = require("express");
 const joi = require("joi") ;
 const _ = require("lodash") ;
-const {Card } = require("../models/Card");
+const {Card}  = require("../models/Card");
+
 const auth = require("../middlewares/auth");
 const router = express.Router();
 
@@ -25,7 +26,7 @@ const cardSchema = joi.object({
  }
  
   }
-
+//Adding new card
 router.post("/" ,auth ,  async(req,res) => {
  try{  
 //1. joi validation for body
@@ -51,7 +52,7 @@ card.user_id = req.payload._id ;
 //part(8) - all cards of specific user
 router.get("/my-cards" , auth , async(req,res) => {
     try{
-    const myCards = await card.find({ user_id:req.payload._id});
+    const myCards = await Card.find({ user_id:req.payload._id});
     // if(myCards.length == 0) return res.status(404).send("there are no cards");
     res.status(200).send(myCards) ;
     }
